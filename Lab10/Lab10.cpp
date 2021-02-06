@@ -7,7 +7,7 @@ using namespace std;
 int main()
 {
     setlocale(LC_ALL, "russian");
-    int rows = -1, k, n,f=0;
+    int rows = -1, k = -1, n = -1, f = 0;
     while (rows <= 0)
     {
         cout << "Введите количество строк:";
@@ -33,11 +33,24 @@ int main()
         }
         arr[i][rows] = '\0';
     }
-    cout << "\nВведите номер строки, с которой начать удаление" << endl;
-    cin >> n;
-    cout << "\nВведите количество удалемых строк" << endl;
-    cin >> k;
-
+    while (n <= 0 || n > rows)
+    {
+        cout << "\nВведите номер строки, с которой начать удаление\t";
+        cin >> n;
+        if (n <= 0 || n > rows)
+        {
+            cout << "Ошибка!" << endl;
+        }
+    }
+    while (k <= 0 || k > rows - n + 1)
+    {
+        cout << "\nВведите количество удалемых строк\t";
+        cin >> k;
+        if (k <= 0 || k > rows - n + 1)
+        {
+            cout << "Ошибка!" << endl;
+        }
+    }
     char** arr2 = new char* [rows-k];
     for (int i = 0; i < rows; i++)
     {
@@ -73,15 +86,15 @@ int main()
     {
         for (int j = 0; j < rows; j++)
         {
-            cout << arr2[i][j] << "\t";
+            cout << arr2[i][j];
         }
         cout << endl;
     }
 
-    for (int i = 0; i < rows-k; i++)
-    {
-        delete[]  arr2[i];
-    }
-    delete[]  arr2;
+    //for (int i = 0; i < rows - k; i++)
+    //{
+    //    delete[]  arr2[i];
+    //}
+    //delete[]  arr2;
 }
 
